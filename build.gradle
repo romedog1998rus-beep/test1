@@ -1,23 +1,16 @@
-apply plugin: 'com.android.application'
-
-android {
-    namespace "com.forge.signal"
-    compileSdkVersion 34
-
-    defaultConfig {
-        applicationId "com.forge.signal"
-        minSdkVersion 26
-        targetSdkVersion 34
-        versionCode 1
-        versionName "1.0"
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-        }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.4.2'
     }
 }
 
-dependencies {
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
 }
