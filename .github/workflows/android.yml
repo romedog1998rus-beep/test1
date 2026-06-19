@@ -2,6 +2,9 @@ name: Build APK
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -16,17 +19,14 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Install Gradle
-        run: |
-          sudo apt update
-          sudo apt install gradle -y
+      - name: Grant permission
+        run: chmod +x gradlew
 
       - name: Build APK
-        run: |
-          gradle assemble
+        run: ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: android-apk
-          path: "**/*.apk"
+          path: app/build/outputs/apk/debug/*.apk
